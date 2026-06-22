@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   description: "Find and book the perfect hotel room",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+interface RootLayoutProps {
+  /** Page content rendered inside the layout shell */
+  children: React.ReactNode;
+}
+
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>{children}</body>
