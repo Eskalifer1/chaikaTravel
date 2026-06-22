@@ -11,9 +11,12 @@ import RoomCardRatePlans from "./RoomCardRatePlans";
 interface RoomCardProps {
   /** Room data to display */
   room: Room;
+
+  /** Whether to eagerly preload the hero image for LCP optimization */
+  priority?: boolean;
 }
 
-export default function RoomCard({ room }: RoomCardProps) {
+export default function RoomCard({ room, priority = false }: RoomCardProps) {
   return (
     <article
       aria-label={room.name}
@@ -22,7 +25,7 @@ export default function RoomCard({ room }: RoomCardProps) {
       {room.badge && <RoomCardBadge badge={room.badge} />}
 
       <div className="md:w-80 md:shrink-0">
-        <ImageGallery images={room.images} roomName={room.name} />
+        <ImageGallery images={room.images} roomName={room.name} priority={priority} />
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4">

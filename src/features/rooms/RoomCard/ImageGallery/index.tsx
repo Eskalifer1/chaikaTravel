@@ -15,9 +15,12 @@ interface ImageGalleryProps {
 
   /** Room name used to generate alt text */
   roomName: string;
+
+  /** Whether to eagerly preload the first image for LCP optimization */
+  priority?: boolean;
 }
 
-export default function ImageGallery({ images, roomName }: ImageGalleryProps) {
+export default function ImageGallery({ images, roomName, priority = false }: ImageGalleryProps) {
   const { index, hasPrev, hasNext, prev, next, handleKeyDown } = useGallery(images.length);
 
   if (images.length === 1) {
@@ -29,7 +32,7 @@ export default function ImageGallery({ images, roomName }: ImageGalleryProps) {
           fill
           sizes="(max-width: 768px) 100vw, 640px"
           className="object-cover"
-          priority={false}
+          priority={priority}
         />
       </div>
     );
@@ -52,6 +55,7 @@ export default function ImageGallery({ images, roomName }: ImageGalleryProps) {
           position={i + 1}
           total={images.length}
           active={i === index}
+          priority={priority && i === 0}
         />
       ))}
 

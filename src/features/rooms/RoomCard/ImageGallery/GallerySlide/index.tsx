@@ -15,9 +15,19 @@ interface GallerySlideProps {
 
   /** Whether this slide is currently visible */
   active: boolean;
+
+  /** Whether to eagerly preload this image for LCP optimization */
+  priority?: boolean;
 }
 
-export default function GallerySlide({ src, alt, position, total, active }: GallerySlideProps) {
+export default function GallerySlide({
+  src,
+  alt,
+  position,
+  total,
+  active,
+  priority = false,
+}: GallerySlideProps) {
   return (
     <div
       role="group"
@@ -32,7 +42,7 @@ export default function GallerySlide({ src, alt, position, total, active }: Gall
         fill
         sizes="(max-width: 768px) 100vw, 640px"
         className="object-cover"
-        priority={position === 1}
+        priority={priority}
       />
     </div>
   );

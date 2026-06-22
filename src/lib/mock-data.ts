@@ -17,9 +17,9 @@ export const rooms: Room[] = [
       { key: "air-conditioning", label: "Air Conditioning" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
-      "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=800",
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200",
+      "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=1200",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=1200",
     ],
     ratePlans: [
       {
@@ -72,9 +72,9 @@ export const rooms: Room[] = [
       { key: "breakfast", label: "Breakfast Available" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=800",
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+      "https://images.unsplash.com/photo-1591088398332-8a7791972843?w=1200",
+      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200",
     ],
     ratePlans: [
       {
@@ -138,9 +138,9 @@ export const rooms: Room[] = [
       { key: "parking", label: "Free Valet Parking" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800",
-      "https://images.unsplash.com/photo-1590490359683-658d3d23f972?w=800",
-      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200",
+      "https://images.unsplash.com/photo-1590490359683-658d3d23f972?w=1200",
+      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200",
     ],
     ratePlans: [
       {
@@ -186,9 +186,9 @@ export const rooms: Room[] = [
       { key: "breakfast", label: "Daily Breakfast" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800",
-      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=800",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
+      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200",
+      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1200",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200",
     ],
     ratePlans: [
       {
@@ -238,8 +238,8 @@ export const rooms: Room[] = [
       { key: "tv", label: "TV" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800",
+      "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=1200",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200",
     ],
     ratePlans: [
       {
@@ -281,9 +281,9 @@ export const rooms: Room[] = [
       { key: "parking", label: "Free Parking" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=800",
-      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=800",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=1200",
+      "https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=1200",
+      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=1200",
     ],
     ratePlans: [
       {
@@ -333,8 +333,8 @@ export const rooms: Room[] = [
       { key: "air-conditioning", label: "Air Conditioning" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1622866306950-81d17097d458?w=800",
-      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
+      "https://images.unsplash.com/photo-1622866306950-81d17097d458?w=1200",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200",
     ],
     ratePlans: [
       {
@@ -371,9 +371,9 @@ export const rooms: Room[] = [
       { key: "breakfast", label: "Private Chef Breakfast" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",
-      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
-      "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=800",
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200",
+      "https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=1200",
     ],
     ratePlans: [
       {
@@ -416,9 +416,9 @@ export const rooms: Room[] = [
       { key: "mini-bar", label: "Mini Bar" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800",
-      "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=800",
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=1200",
+      "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=1200",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200",
     ],
     ratePlans: [
       {
@@ -471,7 +471,7 @@ export const rooms: Room[] = [
       { key: "parking", label: "Two Parking Spaces" },
       { key: "gym", label: "Gym Access" },
     ],
-    images: ["https://images.unsplash.com/photo-1497366216548-37526070297c?w=800"],
+    images: ["https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200"],
     ratePlans: [
       {
         id: "rp-conf-nonref",
@@ -519,8 +519,8 @@ export const rooms: Room[] = [
       { key: "air-conditioning", label: "Air Conditioning" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
-      "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=800",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200",
+      "https://images.unsplash.com/photo-1505693314120-0d443867891c?w=1200",
     ],
     ratePlans: [
       {
@@ -560,9 +560,9 @@ export const rooms: Room[] = [
       { key: "breakfast", label: "Breakfast Available" },
     ],
     images: [
-      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=800",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?w=1200",
+      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200",
+      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200",
     ],
     ratePlans: [
       {

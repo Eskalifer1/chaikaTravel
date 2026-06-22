@@ -1,5 +1,6 @@
 "use client";
 
+import { PRIORITY_CARDS_COUNT } from "@/constants/imageLoading";
 import RoomCard from "@/features/rooms/RoomCard";
 import type { Room } from "@/types";
 
@@ -18,9 +19,9 @@ export default function RoomList({ rooms }: RoomListProps) {
   return (
     <section aria-label="Available rooms">
       <ul className="flex flex-col gap-6">
-        {rooms.map((room) => (
+        {rooms.map((room, i) => (
           <li key={room.id}>
-            <RoomCard room={room} />
+            <RoomCard room={room} priority={i < PRIORITY_CARDS_COUNT} />
           </li>
         ))}
       </ul>
