@@ -11,6 +11,7 @@ const config = tseslint.config(
     plugins: { prettier: prettierPlugin },
     rules: {
       "prettier/prettier": "error",
+      "curly": ["error", "all"],
       "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },

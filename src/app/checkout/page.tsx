@@ -1,7 +1,18 @@
-export default function CheckoutPage() {
+import CheckoutDetails from "@/features/checkout/CheckoutDetails";
+import type { NextSearchParams } from "@/types";
+
+interface CheckoutPageProps {
+  /** Raw URL search params passed by Next.js App Router */
+  searchParams: NextSearchParams;
+}
+
+export default async function CheckoutPage({ searchParams }: CheckoutPageProps) {
+  const params = Object.entries(await searchParams);
+
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-xl font-medium text-gray-600">Checkout coming soon</p>
-    </main>
+    <div className="mx-auto max-w-2xl px-4 py-12">
+      <h1 className="mb-6 text-2xl font-bold text-text-primary">Checkout</h1>
+      <CheckoutDetails params={params} />
+    </div>
   );
 }

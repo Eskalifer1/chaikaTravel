@@ -6,19 +6,20 @@ ignorePaths:
   - yarn.lock
   - "*.lock"
 words:
+  - cancellation
   - chaika
-  - tailwindcss
-  - trivago
-  - nextjs
-  - zod
-  - hookform
-  - ratePlan
-  - ratePlanId
-  - roomId
   - checkIn
   - checkOut
   - childAges
-  - maxOccupancy
-  - cancellation
-  - refundable
   - cspell
+  - hookform
+  - Jost
+  - maxOccupancy
+  - nextjs
+  - ratePlan
+  - ratePlanId
+  - refundable
+  - roomId
+  - tailwindcss
+  - trivago
+  - zod

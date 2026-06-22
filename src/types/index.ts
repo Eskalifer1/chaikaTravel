@@ -1,3 +1,9 @@
+/** Resolved value of Next.js App Router raw URL search params */
+export type ResolvedSearchParams = Record<string, string | string[] | undefined>;
+
+/** Shape of raw URL search params as provided by Next.js App Router */
+export type NextSearchParams = Promise<ResolvedSearchParams>;
+
 export type AmenityKey =
   | "wifi"
   | "air-conditioning"
@@ -16,11 +22,7 @@ export interface Amenity {
   label: string;
 }
 
-export type RoomBadge =
-  | "frequently-booked"
-  | "upgrade"
-  | "best-value"
-  | "lowest-price";
+export type RoomBadge = "frequently-booked" | "upgrade" | "best-value" | "lowest-price";
 
 export interface RoomSearchParams {
   /** Check-in date in ISO format (YYYY-MM-DD) */

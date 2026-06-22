@@ -12,3 +12,4 @@ All rules live in `.claude/rules/`. This file is an index.
 | [06-ux-layout.md](.claude/rules/06-ux-layout.md) | Sticky form, skeleton, infinite scroll, a11y |
 | [07-checkout.md](.claude/rules/07-checkout.md) | Reserve button, checkout URL params, stub page |
 | [08-code-style.md](.claude/rules/08-code-style.md) | Code style, ESLint/Prettier, what NOT to do |
+| [09-styling.md](.claude/rules/09-styling.md) | Tailwind theme tokens, color palette, border radius |
