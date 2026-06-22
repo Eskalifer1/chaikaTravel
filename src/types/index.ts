@@ -4,15 +4,19 @@ export type ResolvedSearchParams = Record<string, string | string[] | undefined>
 /** Shape of raw URL search params as provided by Next.js App Router */
 export type NextSearchParams = Promise<ResolvedSearchParams>;
 
-export type AmenityKey =
-  | "wifi"
-  | "air-conditioning"
-  | "tv"
-  | "mini-bar"
-  | "parking"
-  | "pool"
-  | "gym"
-  | "breakfast";
+export const AMENITY_KEYS = {
+  wifi: "wifi",
+  tv: "tv",
+  airConditioning: "air-conditioning",
+  miniBar: "mini-bar",
+  parking: "parking",
+  pool: "pool",
+  gym: "gym",
+  breakfast: "breakfast",
+} as const;
+
+/** Stable string key used to resolve the amenity icon component */
+export type AmenityKey = (typeof AMENITY_KEYS)[keyof typeof AMENITY_KEYS];
 
 export interface Amenity {
   /** Stable key used to resolve the icon component */
@@ -22,7 +26,15 @@ export interface Amenity {
   label: string;
 }
 
-export type RoomBadge = "frequently-booked" | "upgrade" | "best-value" | "lowest-price";
+export const ROOM_BADGES = {
+  frequentlyBooked: "frequently-booked",
+  upgrade: "upgrade",
+  bestValue: "best-value",
+  lowestPrice: "lowest-price",
+} as const;
+
+/** Promotional badge key shown on the room card */
+export type RoomBadge = (typeof ROOM_BADGES)[keyof typeof ROOM_BADGES];
 
 export interface RoomSearchParams {
   /** Check-in date in ISO format (YYYY-MM-DD) */
@@ -41,17 +53,35 @@ export interface RoomSearchParams {
   childAges: number[];
 }
 
+export const CANCELLATION_TYPES = {
+  nonRefundable: "non-refundable",
+  freeCancellation: "free-cancellation",
+} as const;
+
+/** Cancellation policy type key */
+export type CancellationPolicyType = (typeof CANCELLATION_TYPES)[keyof typeof CANCELLATION_TYPES];
+
 export type CancellationPolicy =
-  | { type: "non-refundable" }
+  | { type: typeof CANCELLATION_TYPES.nonRefundable }
   | {
-      type: "free-cancellation";
+      type: typeof CANCELLATION_TYPES.freeCancellation;
       /** ISO date string — last day free cancellation is allowed */
       deadline: string;
     };
 
+export const MEAL_PLAN_TYPES = {
+  breakfast: "breakfast",
+  halfBoard: "half-board",
+  fullBoard: "full-board",
+  allInclusive: "all-inclusive",
+} as const;
+
+/** Meal plan type key */
+export type MealPlanType = (typeof MEAL_PLAN_TYPES)[keyof typeof MEAL_PLAN_TYPES];
+
 export interface MealPlan {
   /** Meal plan category */
-  type: "breakfast" | "half-board" | "full-board" | "all-inclusive";
+  type: MealPlanType;
 
   /** Human-readable label shown in the UI */
   label: string;
