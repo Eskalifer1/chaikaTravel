@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 
-import RoomList from "@/features/rooms/RoomList";
 import { rooms } from "@/lib/mock-data";
+
+import RoomList from "@/features/rooms/RoomList";
 
 export default function Home() {
   return (

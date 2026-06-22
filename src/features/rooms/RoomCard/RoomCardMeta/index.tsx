@@ -1,7 +1,8 @@
+import { pluralize } from "@/lib/utils/pluralize";
+
 import Icon from "@/components/Icon";
 import AreaIcon from "@/components/Icons/AreaIcon";
 import UsersIcon from "@/components/Icons/UsersIcon";
-import { pluralize } from "@/lib/utils/pluralize";
 
 import {
   getAvailabilityAriaLabel,

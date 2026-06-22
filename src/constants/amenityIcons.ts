@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
+import { AMENITY_KEYS, type AmenityKey } from "@/types";
+
 import AirConditioningIcon from "@/components/Icons/AirConditioningIcon";
 import BreakfastIcon from "@/components/Icons/BreakfastIcon";
 import GymIcon from "@/components/Icons/GymIcon";
@@ -8,7 +10,6 @@ import ParkingIcon from "@/components/Icons/ParkingIcon";
 import PoolIcon from "@/components/Icons/PoolIcon";
 import TvIcon from "@/components/Icons/TvIcon";
 import WifiIcon from "@/components/Icons/WifiIcon";
-import { AMENITY_KEYS, type AmenityKey } from "@/types";
 
 type SvgComponent = (props: ComponentPropsWithoutRef<"svg">) => React.ReactElement;
 

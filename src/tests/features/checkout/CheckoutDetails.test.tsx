@@ -1,8 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import CheckoutDetails from "@/features/checkout/CheckoutDetails";
 import type { ResolvedSearchParams } from "@/types";
+
+import CheckoutDetails from "@/features/checkout/CheckoutDetails";
 
 type Params = [string, ResolvedSearchParams[string]][];
 

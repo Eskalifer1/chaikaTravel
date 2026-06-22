@@ -1,7 +1,8 @@
 "use client";
 
-import { formatPrice } from "@/lib/utils/formatPrice";
 import type { RatePlan } from "@/types";
+
+import { formatPrice } from "@/lib/utils/formatPrice";
 
 import RatePlanRow from "../RatePlanRow";
 

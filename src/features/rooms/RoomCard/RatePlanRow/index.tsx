@@ -2,8 +2,9 @@
 
 import { useSearchParams } from "next/navigation";
 
-import { formatPrice } from "@/lib/utils/formatPrice";
 import type { RatePlan } from "@/types";
+
+import { formatPrice } from "@/lib/utils/formatPrice";
 
 import { buildCheckoutUrl } from "../../utils/buildCheckoutUrl";
 import RatePlanCancellation from "./RatePlanCancellation";

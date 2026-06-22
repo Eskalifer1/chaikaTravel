@@ -1,0 +1,32 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "<BUILTIN_MODULES>",
+    "",
+    "^(react|react-dom)(.*)$",
+    "",
+    "^(next)(.*)$",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@/types(.*)$",
+    "^@/constants(.*)$",
+    "",
+    "^@/lib(.*)$",
+    "",
+    "^@/components(.*)$",
+    "",
+    "^@/features(.*)$",
+    "",
+    "^@/(.*)$",
+    "",
+    "^[./]"
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.0.0"
+}

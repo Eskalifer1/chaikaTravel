@@ -1,8 +1,9 @@
 "use client";
 
-import Icon from "@/components/Icon";
-import { AMENITY_ICONS } from "@/constants/amenityIcons";
 import type { Amenity } from "@/types";
+import { AMENITY_ICONS } from "@/constants/amenityIcons";
+
+import Icon from "@/components/Icon";
 
 interface AmenityListProps {
   /** List of amenities to display */

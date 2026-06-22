@@ -1,8 +1,9 @@
 "use client";
 
-import { PRIORITY_CARDS_COUNT } from "@/constants/imageLoading";
-import RoomCard from "@/features/rooms/RoomCard";
 import type { Room } from "@/types";
+import { PRIORITY_CARDS_COUNT } from "@/constants/imageLoading";
+
+import RoomCard from "@/features/rooms/RoomCard";
 
 import RoomListEmptyState from "./RoomListEmptyState";
 

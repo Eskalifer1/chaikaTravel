@@ -1,5 +1,5 @@
-import { BADGE_LABELS } from "@/constants/badgeLabels";
 import type { RoomBadge } from "@/types";
+import { BADGE_LABELS } from "@/constants/badgeLabels";
 
 interface RoomCardBadgeProps {
   /** Badge variant to display */

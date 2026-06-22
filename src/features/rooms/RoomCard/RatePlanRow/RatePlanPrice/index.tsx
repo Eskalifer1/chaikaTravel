@@ -1,5 +1,6 @@
-import { formatPrice } from "@/lib/utils/formatPrice";
 import { type DiscountedRatePlan, type RatePlan } from "@/types";
+
+import { formatPrice } from "@/lib/utils/formatPrice";
 
 import { getDiscountPercent } from "../../../utils/getDiscountPercent";
 

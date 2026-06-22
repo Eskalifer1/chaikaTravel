@@ -1,6 +1,7 @@
+import type { MealPlan } from "@/types";
+
 import Icon from "@/components/Icon";
 import MealIcon from "@/components/Icons/MealIcon";
-import type { MealPlan } from "@/types";
 
 interface RatePlanMealProps {
   /** Meal plan included in this rate; undefined means room-only */

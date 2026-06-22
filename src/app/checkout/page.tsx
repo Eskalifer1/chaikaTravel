@@ -1,5 +1,6 @@
-import CheckoutDetails from "@/features/checkout/CheckoutDetails";
 import type { NextSearchParams } from "@/types";
+
+import CheckoutDetails from "@/features/checkout/CheckoutDetails";
 
 interface CheckoutPageProps {
   /** Raw URL search params passed by Next.js App Router */

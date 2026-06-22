@@ -1,8 +1,10 @@
+import { CANCELLATION_TYPES, type CancellationPolicy } from "@/types";
+
+import { formatDeadlineDate } from "@/lib/utils/formatDeadlineDate";
+
 import Icon from "@/components/Icon";
 import CheckIcon from "@/components/Icons/CheckIcon";
 import XIcon from "@/components/Icons/XIcon";
-import { formatDeadlineDate } from "@/lib/utils/formatDeadlineDate";
-import { CANCELLATION_TYPES, type CancellationPolicy } from "@/types";
 
 interface RatePlanCancellationProps {
   /** Cancellation policy to display */

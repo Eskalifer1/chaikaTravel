@@ -1,5 +1,6 @@
-import Table from "@/components/Table";
 import type { ResolvedSearchParams } from "@/types";
+
+import Table from "@/components/Table";
 
 import CheckoutEmptyState from "./CheckoutEmptyState";
 

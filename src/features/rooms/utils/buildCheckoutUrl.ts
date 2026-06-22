@@ -1,5 +1,5 @@
-import { ROUTES } from "@/constants/routes";
 import type { RatePlan } from "@/types";
+import { ROUTES } from "@/constants/routes";
 
 /**
  * Builds the checkout page URL for a given rate plan, preserving existing
