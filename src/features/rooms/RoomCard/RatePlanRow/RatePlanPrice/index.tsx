@@ -15,6 +15,7 @@ interface RatePlanPriceProps {
   roomCount: number;
 }
 
+/** Type guard — true when the plan has an original price higher than the current price */
 function isDiscounted(plan: RatePlan): plan is DiscountedRatePlan {
   // !== undefined because originalPrice: 0 is technically valid — use explicit presence check
   return plan.originalPrice !== undefined && plan.originalPrice > plan.price;

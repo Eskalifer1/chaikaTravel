@@ -9,6 +9,7 @@ import { pluralize } from "@/lib/utils";
 import type { AvailabilitySearchFormValues } from "../schema";
 import TravelersPanelDialog from "./TravelersPanelDialog";
 
+/** Builds a compact summary label for the travelers trigger button */
 function buildTravelersLabel(adults: number, rooms: number, childAges: number[]): string {
   const totalGuests = adults + childAges.length;
   const guestLabel = `${totalGuests} ${pluralize(totalGuests, "traveler", "travelers")}`;
