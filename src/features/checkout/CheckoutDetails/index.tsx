@@ -1,5 +1,6 @@
 import Table from "@/components/Table";
 import type { ResolvedSearchParams } from "@/types";
+
 import CheckoutEmptyState from "./CheckoutEmptyState";
 
 interface CheckoutDetailsProps {
@@ -25,7 +26,7 @@ export default function CheckoutDetails({ params }: CheckoutDetailsProps) {
           <Table.Row key={key}>
             <Table.Cell variant="secondary">{key}</Table.Cell>
             <Table.Cell variant="primary">
-              {Array.isArray(value) ? value.join(", ") : (value || "—")}
+              {Array.isArray(value) ? value.join(", ") : value || "—"}
             </Table.Cell>
           </Table.Row>
         ))}
