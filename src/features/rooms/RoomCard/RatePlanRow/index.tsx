@@ -14,9 +14,15 @@ import RatePlanPrice from "./RatePlanPrice";
 interface RatePlanRowProps {
   /** Rate plan data to display */
   plan: RatePlan;
+
+  /** Number of nights — multiplied by the per-night price to get the total */
+  nights: number;
+
+  /** Number of rooms booked — multiplied into the total price */
+  roomCount: number;
 }
 
-export default function RatePlanRow({ plan }: RatePlanRowProps) {
+export default function RatePlanRow({ plan, nights, roomCount }: RatePlanRowProps) {
   const searchParams = useSearchParams();
   const checkoutUrl = buildCheckoutUrl(plan, searchParams);
 
@@ -28,14 +34,14 @@ export default function RatePlanRow({ plan }: RatePlanRowProps) {
       </div>
 
       <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end sm:justify-normal">
-        <RatePlanPrice plan={plan} />
+        <RatePlanPrice plan={plan} nights={nights} roomCount={roomCount} />
 
         <a
           href={checkoutUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center justify-center rounded-radius-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          aria-label={`Reserve this room for ${formatPrice(plan.price, plan.currency)}${plan.meal ? `, ${plan.meal.label}` : ""}, opens in new tab`}
+          aria-label={`Reserve this room for ${formatPrice(plan.price * nights * roomCount, plan.currency)}${plan.meal ? `, ${plan.meal.label}` : ""}, opens in new tab`}
         >
           Reserve
         </a>

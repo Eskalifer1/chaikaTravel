@@ -4,7 +4,11 @@ import { useSearchParams } from "next/navigation";
 
 import type { Room } from "@/types";
 import { PRIORITY_CARDS_COUNT } from "@/constants/imageLoading";
+import { ROOM_QUERY_PARAM } from "@/constants/search";
 
+import { computeNights } from "@/lib/utils";
+
+import { parseSearchParams } from "@/features/rooms/AvailabilitySearch/schema";
 import RoomCard from "@/features/rooms/RoomCard";
 import { filterRooms } from "@/features/rooms/utils/filterRooms";
 
@@ -16,9 +20,12 @@ interface RoomListProps {
 }
 
 export default function RoomList({ rooms }: RoomListProps) {
-  const searchParams = useSearchParams();
-  const query = searchParams.get("q") ?? "";
-  const filtered = filterRooms(rooms, query);
+  const rawSearchParams = useSearchParams();
+  const searchParams = parseSearchParams(rawSearchParams);
+  const query = rawSearchParams.get(ROOM_QUERY_PARAM) ?? "";
+  const nights = computeNights(searchParams.checkIn, searchParams.checkOut);
+
+  const filtered = filterRooms(rooms, { query, searchParams });
 
   if (filtered.length === 0) {
     return <RoomListEmptyState />;
@@ -29,7 +36,12 @@ export default function RoomList({ rooms }: RoomListProps) {
       <ul className="flex flex-col gap-6">
         {filtered.map((room, i) => (
           <li key={room.id}>
-            <RoomCard room={room} priority={i < PRIORITY_CARDS_COUNT} />
+            <RoomCard
+              room={room}
+              priority={i < PRIORITY_CARDS_COUNT}
+              nights={nights}
+              roomCount={searchParams.rooms}
+            />
           </li>
         ))}
       </ul>

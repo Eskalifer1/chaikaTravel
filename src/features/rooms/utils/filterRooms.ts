@@ -1,4 +1,4 @@
-import type { Room } from "@/types";
+import type { Room, RoomSearchParams } from "@/types";
 
 /** Returns the lowest price across all rate plans for a room */
 function getMinPrice(room: Room): number {
@@ -6,23 +6,56 @@ function getMinPrice(room: Room): number {
 }
 
 /**
- * Filters rooms by a free-text query.
- *
- * Matches against: room name, description, amenity labels, meal plan labels,
- * and minimum rate plan price (numeric match).
+ * Returns true when the room can accommodate the requested guests.
+ * Each room unit fits `adults + children` guests — `maxOccupancy` is per unit.
  */
-export function filterRooms(rooms: Room[], query: string): Room[] {
-  const trimmed = query.trim();
+function matchesOccupancy(room: Room, adults: number, childAges: number[]): boolean {
+  return adults + childAges.length <= room.maxOccupancy;
+}
 
+/**
+ * Returns true when enough units of this room type are available.
+ * `availableCount === undefined` means availability is unknown — always show.
+ */
+function matchesAvailability(room: Room, rooms: number): boolean {
+  return room.availableCount === undefined || room.availableCount >= rooms;
+}
+
+interface FilterRoomsOptions {
+  /** Free-text search query */
+  query: string;
+
+  /** Availability search params used for occupancy and room count filtering */
+  searchParams: RoomSearchParams;
+}
+
+/**
+ * Filters rooms by availability search params and an optional free-text query.
+ *
+ * Hard filters (always applied):
+ * - `adults + childAges.length ≤ room.maxOccupancy`
+ * - `room.availableCount ≥ rooms` (undefined availableCount passes through)
+ *
+ * Soft filter (applied only when query is non-empty):
+ * - Matches room name, description, amenity labels, meal plan labels, or min price.
+ */
+export function filterRooms(rooms: Room[], { query, searchParams }: FilterRoomsOptions): Room[] {
+  const { adults, childAges, rooms: roomCount } = searchParams;
+
+  const hardFiltered = rooms.filter(
+    (room) => matchesOccupancy(room, adults, childAges) && matchesAvailability(room, roomCount),
+  );
+
+  const trimmed = query.trim();
   if (trimmed === "") {
-    return rooms;
+    return hardFiltered;
   }
 
   const lower = trimmed.toLowerCase();
   const asNumber = Number(trimmed);
   const isNumeric = !Number.isNaN(asNumber) && trimmed !== "";
 
-  return rooms.filter((room) => {
+  return hardFiltered.filter((room) => {
     if (room.name.toLowerCase().includes(lower)) {
       return true;
     }

@@ -14,9 +14,15 @@ interface RoomCardProps {
 
   /** Whether to eagerly preload the hero image for LCP optimization */
   priority?: boolean;
+
+  /** Number of nights for the stay — used to compute total price from the per-night rate */
+  nights: number;
+
+  /** Number of rooms booked — multiplied into the total price */
+  roomCount: number;
 }
 
-export default function RoomCard({ room, priority = false }: RoomCardProps) {
+export default function RoomCard({ room, priority = false, nights, roomCount }: RoomCardProps) {
   return (
     <article
       aria-label={room.name}
@@ -42,7 +48,7 @@ export default function RoomCard({ room, priority = false }: RoomCardProps) {
 
         <AmenityList amenities={room.amenities} />
 
-        <RoomCardRatePlans ratePlans={room.ratePlans} />
+        <RoomCardRatePlans ratePlans={room.ratePlans} nights={nights} roomCount={roomCount} />
       </div>
     </article>
   );

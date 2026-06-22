@@ -6,7 +6,8 @@ import type { Room } from "@/types";
 import RoomList from "@/features/rooms/RoomList";
 
 vi.mock("next/navigation", () => ({
-  useSearchParams: () => new URLSearchParams(),
+  useSearchParams: () =>
+    new URLSearchParams("adults=1&rooms=1&checkIn=2026-09-16&checkOut=2026-09-17"),
 }));
 
 vi.mock("next/image", () => ({

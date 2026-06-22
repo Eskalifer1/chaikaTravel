@@ -9,10 +9,20 @@ import RatePlanRow from "../RatePlanRow";
 interface RoomCardRatePlansProps {
   /** Rate plans to display */
   ratePlans: RatePlan[];
+
+  /** Number of nights — multiplied by the per-night price to get the total */
+  nights: number;
+
+  /** Number of rooms booked — multiplied into the total price */
+  roomCount: number;
 }
 
-export default function RoomCardRatePlans({ ratePlans }: RoomCardRatePlansProps) {
-  const lowestPrice = Math.min(...ratePlans.map((p) => p.price));
+export default function RoomCardRatePlans({
+  ratePlans,
+  nights,
+  roomCount,
+}: RoomCardRatePlansProps) {
+  const lowestPrice = Math.min(...ratePlans.map((p) => p.price)) * nights * roomCount;
   const currency = ratePlans[0]?.currency ?? "USD";
 
   return (
@@ -27,7 +37,7 @@ export default function RoomCardRatePlans({ ratePlans }: RoomCardRatePlansProps)
       <ul className="flex flex-col gap-2">
         {ratePlans.map((plan) => (
           <li key={plan.id}>
-            <RatePlanRow plan={plan} />
+            <RatePlanRow plan={plan} nights={nights} roomCount={roomCount} />
           </li>
         ))}
       </ul>

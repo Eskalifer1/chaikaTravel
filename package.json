@@ -14,6 +14,7 @@
     "spell": "cspell \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
     "next": "^16.2.9",
     "nuqs": "^2.8.9",
     "react": "^19.2.7",

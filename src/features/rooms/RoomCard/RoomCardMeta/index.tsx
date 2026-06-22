@@ -39,6 +39,7 @@ export default function RoomCardMeta({ areaSqm, maxOccupancy, availableCount }: 
         </span>
       </span>
 
+      {/* !== undefined because availableCount can be 0 — falsy but semantically valid */}
       {availableCount !== undefined && (
         <span
           className={
