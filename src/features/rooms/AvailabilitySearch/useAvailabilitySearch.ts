@@ -11,20 +11,14 @@ import {
   ROOMS_PARAM,
 } from "@/constants/search";
 
-import {
-  getDefaultValues,
-  parseSearchParams,
-  type AvailabilitySearchFormValues,
-} from "./schema";
-
-const defaults = getDefaultValues();
+import { parseSearchParams, type AvailabilitySearchFormValues } from "./schema";
 
 const availabilityParsers = {
-  [CHECK_IN_PARAM]: parseAsString.withDefault(defaults.checkIn),
-  [CHECK_OUT_PARAM]: parseAsString.withDefault(defaults.checkOut),
-  [ROOMS_PARAM]: parseAsInteger.withDefault(defaults.rooms),
-  [ADULTS_PARAM]: parseAsInteger.withDefault(defaults.adults),
-  [CHILD_AGES_PARAM]: parseAsArrayOf(parseAsInteger).withDefault(defaults.childAges),
+  [CHECK_IN_PARAM]: parseAsString,
+  [CHECK_OUT_PARAM]: parseAsString,
+  [ROOMS_PARAM]: parseAsInteger,
+  [ADULTS_PARAM]: parseAsInteger,
+  [CHILD_AGES_PARAM]: parseAsArrayOf(parseAsInteger),
 };
 
 interface UseAvailabilitySearchReturn {
@@ -42,11 +36,19 @@ export function useAvailabilitySearch(): UseAvailabilitySearchReturn {
   });
 
   const rawParams = new URLSearchParams();
-  rawParams.set(CHECK_IN_PARAM, raw[CHECK_IN_PARAM]);
-  rawParams.set(CHECK_OUT_PARAM, raw[CHECK_OUT_PARAM]);
-  rawParams.set(ROOMS_PARAM, String(raw[ROOMS_PARAM]));
-  rawParams.set(ADULTS_PARAM, String(raw[ADULTS_PARAM]));
-  if (raw[CHILD_AGES_PARAM].length > 0) {
+  if (raw[CHECK_IN_PARAM] !== null) {
+    rawParams.set(CHECK_IN_PARAM, raw[CHECK_IN_PARAM]);
+  }
+  if (raw[CHECK_OUT_PARAM] !== null) {
+    rawParams.set(CHECK_OUT_PARAM, raw[CHECK_OUT_PARAM]);
+  }
+  if (raw[ROOMS_PARAM] !== null) {
+    rawParams.set(ROOMS_PARAM, String(raw[ROOMS_PARAM]));
+  }
+  if (raw[ADULTS_PARAM] !== null) {
+    rawParams.set(ADULTS_PARAM, String(raw[ADULTS_PARAM]));
+  }
+  if (raw[CHILD_AGES_PARAM] !== null && raw[CHILD_AGES_PARAM].length > 0) {
     rawParams.set(CHILD_AGES_PARAM, raw[CHILD_AGES_PARAM].join(","));
   }
   const searchParams = parseSearchParams(rawParams);

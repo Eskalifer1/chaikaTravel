@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { withNuqsTestingAdapter, type OnUrlUpdateFunction } from "nuqs/adapters/testing";
 import { describe, expect, it, vi } from "vitest";
 
+import { formatDisplayDate } from "@/lib/utils";
+
 import AvailabilitySearch from "@/features/rooms/AvailabilitySearch";
 import { getDefaultCheckIn, getDefaultCheckOut } from "@/features/rooms/AvailabilitySearch/schema";
-import { formatDisplayDate } from "@/lib/utils";
 
 // Portal uses next/dynamic with ssr:false which doesn't execute in jsdom.
 // Mock it so dialog children render directly into the document.
