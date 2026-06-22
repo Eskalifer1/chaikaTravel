@@ -87,7 +87,7 @@ export interface MealPlan {
   label: string;
 }
 
-export interface RatePlan {
+interface RatePlanBase {
   /** Unique rate plan identifier */
   id: string;
 
@@ -96,9 +96,6 @@ export interface RatePlan {
 
   /** Total price for the entire stay */
   price: number;
-
-  /** Original price before discount; omitted when no discount applies */
-  originalPrice?: number;
 
   /** ISO 4217 currency code (e.g. "USD") */
   currency: string;
@@ -109,6 +106,19 @@ export interface RatePlan {
   /** Included meal plan; omitted when room-only */
   meal?: MealPlan;
 }
+
+/** Rate plan without a discount */
+export interface RegularRatePlan extends RatePlanBase {
+  originalPrice?: never;
+}
+
+/** Rate plan with a discount — originalPrice is always present and greater than price */
+export interface DiscountedRatePlan extends RatePlanBase {
+  /** Original price before discount */
+  originalPrice: number;
+}
+
+export type RatePlan = RegularRatePlan | DiscountedRatePlan;
 
 export interface Room {
   /** Unique room identifier */
