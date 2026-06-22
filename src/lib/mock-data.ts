@@ -417,7 +417,7 @@ export const rooms: Room[] = [
     ],
     images: [
       "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800",
-      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e3?w=800",
+      "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=800",
       "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
     ],
     ratePlans: [
