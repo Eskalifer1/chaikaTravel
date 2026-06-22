@@ -19,7 +19,7 @@ function AvailabilitySearchInner() {
         onSubmit={methods.handleSubmit(onSubmit)}
         aria-label="Search availability"
         noValidate
-        className="flex flex-wrap items-start gap-2 sm:flex-nowrap sm:items-center"
+        className="flex flex-wrap items-start gap-2 sm:flex-nowrap"
       >
         <DateRangePicker />
         <TravelersPanel />

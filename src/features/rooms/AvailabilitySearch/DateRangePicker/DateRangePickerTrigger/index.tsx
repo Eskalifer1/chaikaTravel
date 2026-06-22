@@ -56,13 +56,11 @@ export default function DateRangePickerTrigger({
         </span>
       </button>
 
-      <div className="h-5">
-        {hasError && (
-          <p role="alert" className="mt-1 text-xs text-destructive">
-            {checkInError ?? checkOutError}
-          </p>
-        )}
-      </div>
+      {hasError && (
+        <p role="alert" className="mt-1 text-xs text-destructive">
+          {checkInError ?? checkOutError}
+        </p>
+      )}
     </div>
   );
 }
