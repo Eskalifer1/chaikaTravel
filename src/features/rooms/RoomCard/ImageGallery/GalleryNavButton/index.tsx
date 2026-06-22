@@ -35,7 +35,7 @@ export default function GalleryNavButton({ direction, enabled, onClick }: Galler
       onClick={onClick}
       disabled={!enabled}
       aria-label={label}
-      className={`absolute ${position} top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-surface/80 text-text-primary shadow backdrop-blur-sm transition hover:bg-surface disabled:opacity-0 disabled:pointer-events-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary`}
+      className={`absolute ${position} top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-surface/80 text-text-primary shadow backdrop-blur-sm transition hover:bg-surface disabled:invisible focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary`}
     >
       <Icon svg={icon} className="h-4 w-4" />
     </button>

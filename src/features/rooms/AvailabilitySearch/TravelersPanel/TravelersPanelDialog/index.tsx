@@ -107,10 +107,14 @@ export default function TravelersPanelDialog({
       <div
         ref={ref}
         role="dialog"
-        aria-label="Select travelers"
+        aria-modal="true"
+        aria-labelledby="travelers-panel-title"
         style={style}
         className="w-72 rounded-radius-lg border border-border bg-surface p-4 shadow-lg"
       >
+        <span id="travelers-panel-title" className="sr-only">
+          Configure rooms and travelers
+        </span>
         <div className="flex flex-col gap-4">
           <Stepper label="Rooms" value={rooms} min={1} onChange={onRoomsChange} />
           <Stepper label="Adults" value={adults} min={1} onChange={onAdultsChange} />

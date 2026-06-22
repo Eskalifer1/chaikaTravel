@@ -69,6 +69,7 @@ export default function TravelersPanel() {
         onClick={handleToggle}
         aria-haspopup="dialog"
         aria-expanded={open}
+        aria-label={`Travelers: ${buildTravelersLabel(adults, rooms, childAges)}`}
         className="flex min-w-45 flex-col gap-0.5 rounded-radius-md border border-border px-3 py-2 text-left transition-colors hover:border-border-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         <span className="text-xs font-medium text-text-secondary">Travelers</span>

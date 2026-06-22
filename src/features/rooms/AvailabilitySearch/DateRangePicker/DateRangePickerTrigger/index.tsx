@@ -44,6 +44,7 @@ export default function DateRangePickerTrigger({
         onClick={onClick}
         aria-haspopup="dialog"
         aria-expanded={open}
+        aria-label={`Dates: ${formatDisplayDate(checkIn)} – ${formatDisplayDate(checkOut)}`}
         className={[
           "flex min-w-50 flex-col gap-0.5 rounded-radius-md border px-3 py-2 text-left transition-colors",
           "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary",

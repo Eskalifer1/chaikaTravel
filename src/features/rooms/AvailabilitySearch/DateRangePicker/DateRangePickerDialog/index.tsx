@@ -45,10 +45,14 @@ export default function DateRangePickerDialog({
       <div
         ref={ref}
         role="dialog"
-        aria-label="Select dates"
+        aria-modal="true"
+        aria-labelledby="date-range-picker-title"
         style={style}
         className="rounded-radius-lg border border-border bg-surface p-3 shadow-lg"
       >
+        <span id="date-range-picker-title" className="sr-only">
+          Select check-in and check-out dates
+        </span>
         <DayPicker
           mode="range"
           selected={displayRange}
