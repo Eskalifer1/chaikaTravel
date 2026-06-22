@@ -1,10 +1,12 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-import { debounce, parseAsString, useQueryState } from "nuqs";
+import { parseAsString, useQueryState } from "nuqs";
 
 import { ROOM_QUERY_PARAM, SEARCH_DEBOUNCE_MS } from "@/constants/search";
+
+import { useDebounce } from "@/lib/hooks/useDebounce";
 
 interface UseRoomSearchReturn {
   /** Current value of the search input (unthrottled) */
@@ -18,19 +20,20 @@ interface UseRoomSearchReturn {
 }
 
 export function useRoomSearch(): UseRoomSearchReturn {
-  const [inputValue, setQueryState] = useQueryState(
+  const [queryState, setQueryState] = useQueryState(
     ROOM_QUERY_PARAM,
     parseAsString.withDefault("").withOptions({ shallow: true, scroll: false }),
   );
 
-  const setInputValue = useCallback(
-    (value: string) => {
-      void setQueryState(value || null, { limitUrlUpdates: debounce(SEARCH_DEBOUNCE_MS) });
-    },
-    [setQueryState],
-  );
+  const [inputValue, setInputValue] = useState(queryState);
+  const debouncedValue = useDebounce(inputValue, SEARCH_DEBOUNCE_MS);
+
+  useEffect(() => {
+    void setQueryState(debouncedValue || null);
+  }, [debouncedValue, setQueryState]);
 
   const clearSearch = useCallback(() => {
+    setInputValue("");
     void setQueryState(null);
   }, [setQueryState]);
 

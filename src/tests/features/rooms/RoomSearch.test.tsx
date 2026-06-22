@@ -1,9 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { withNuqsTestingAdapter } from "nuqs/adapters/testing";
+import { withNuqsTestingAdapter, type UrlUpdateEvent } from "nuqs/adapters/testing";
 import { describe, expect, it, vi } from "vitest";
-
-import type { UrlUpdateEvent } from "nuqs/adapters/testing";
 
 import RoomSearch from "@/features/rooms/RoomSearch";
 
