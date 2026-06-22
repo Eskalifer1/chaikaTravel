@@ -1,0 +1,24 @@
+version: "0.2"
+language: en
+ignorePaths:
+  - node_modules
+  - .next
+  - yarn.lock
+  - "*.lock"
+words:
+  - chaika
+  - tailwindcss
+  - trivago
+  - nextjs
+  - zod
+  - hookform
+  - ratePlan
+  - ratePlanId
+  - roomId
+  - checkIn
+  - checkOut
+  - childAges
+  - maxOccupancy
+  - cancellation
+  - refundable
+  - cspell
