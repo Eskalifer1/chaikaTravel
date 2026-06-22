@@ -11,7 +11,11 @@ import {
   ROOMS_PARAM,
 } from "@/constants/search";
 
-import { getDefaultValues, parseSearchParams, type AvailabilitySearchFormValues } from "./schema";
+import {
+  getDefaultValues,
+  parseSearchParams,
+  type AvailabilitySearchFormValues,
+} from "./schema";
 
 const defaults = getDefaultValues();
 

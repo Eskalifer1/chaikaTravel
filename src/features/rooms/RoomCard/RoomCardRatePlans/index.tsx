@@ -1,9 +1,12 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import type { RatePlan } from "@/types";
 
 import { formatPrice } from "@/lib/utils/formatPrice";
 
+import { buildCheckoutUrl } from "../../utils/buildCheckoutUrl";
 import RatePlanRow from "../RatePlanRow";
 
 interface RoomCardRatePlansProps {
@@ -22,8 +25,11 @@ export default function RoomCardRatePlans({
   nights,
   roomCount,
 }: RoomCardRatePlansProps) {
-  const lowestPrice = Math.min(...ratePlans.map((p) => p.price)) * nights * roomCount;
-  const currency = ratePlans[0]?.currency ?? "USD";
+  const searchParams = useSearchParams();
+
+  const cheapest = ratePlans.reduce((min, p) => (p.price < min.price ? p : min));
+  const lowestPrice = cheapest.price * nights * roomCount;
+  const currency = cheapest.currency;
 
   return (
     <section aria-label="Rate plans">
@@ -37,7 +43,12 @@ export default function RoomCardRatePlans({
       <ul className="flex flex-col gap-2">
         {ratePlans.map((plan) => (
           <li key={plan.id}>
-            <RatePlanRow plan={plan} nights={nights} roomCount={roomCount} />
+            <RatePlanRow
+              plan={plan}
+              nights={nights}
+              roomCount={roomCount}
+              checkoutUrl={buildCheckoutUrl(plan, searchParams)}
+            />
           </li>
         ))}
       </ul>

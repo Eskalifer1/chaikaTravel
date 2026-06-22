@@ -4,6 +4,14 @@ import { withNuqsTestingAdapter, type OnUrlUpdateFunction } from "nuqs/adapters/
 import { describe, expect, it, vi } from "vitest";
 
 import AvailabilitySearch from "@/features/rooms/AvailabilitySearch";
+import { getDefaultCheckIn, getDefaultCheckOut } from "@/features/rooms/AvailabilitySearch/schema";
+import { formatDisplayDate } from "@/lib/utils";
+
+// Portal uses next/dynamic with ssr:false which doesn't execute in jsdom.
+// Mock it so dialog children render directly into the document.
+vi.mock("@/components/Portal", () => ({
+  default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -43,6 +51,14 @@ describe("AvailabilitySearch — rendering", () => {
 
     expect(screen.getByText(/2 travelers/i)).toBeInTheDocument();
     expect(screen.getByText(/1 room/i)).toBeInTheDocument();
+  });
+
+  it("falls back to today when URL contains a past checkIn date", () => {
+    renderSearch("checkIn=2020-01-01&checkOut=2020-01-02");
+
+    const expectedCheckIn = formatDisplayDate(getDefaultCheckIn());
+    const expectedCheckOut = formatDisplayDate(getDefaultCheckOut());
+    expect(screen.getByText(`${expectedCheckIn} – ${expectedCheckOut}`)).toBeInTheDocument();
   });
 });
 

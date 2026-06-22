@@ -49,7 +49,7 @@ export default function ImageGallery({ images, roomName, priority = false }: Ima
     >
       {images.map((src, i) => (
         <GallerySlide
-          key={src}
+          key={i}
           src={src}
           alt={`${roomName} — photo ${i + 1} of ${images.length}`}
           position={i + 1}

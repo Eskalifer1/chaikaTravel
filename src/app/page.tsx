@@ -22,11 +22,12 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mx-auto max-w-7xl px-4 py-8">
+        <h1 className="sr-only">Available rooms</h1>
         <Suspense>
           <RoomList rooms={rooms} />
         </Suspense>
-      </main>
+      </div>
     </>
   );
 }

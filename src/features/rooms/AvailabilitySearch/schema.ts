@@ -54,19 +54,15 @@ export function getDefaultValues(): AvailabilitySearchFormValues {
   };
 }
 
-const checkInFieldSchema = z.string().refine((v) => {
-  const today = todayIso();
-  const maxDate = addYears(today, 1);
-  return v >= today && v <= maxDate;
-});
+const checkInFieldSchema = availabilitySearchSchema.shape.checkIn;
 
 const checkOutFieldSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
 
-const roomsFieldSchema = z.number().int().min(1);
+const roomsFieldSchema = availabilitySearchSchema.shape.rooms;
 
-const adultsFieldSchema = z.number().int().min(1);
+const adultsFieldSchema = availabilitySearchSchema.shape.adults;
 
-const childAgesFieldSchema = z.array(z.number().int().min(0).max(17));
+const childAgesFieldSchema = availabilitySearchSchema.shape.childAges;
 
 /**
  * Parses raw URL search params into RoomSearchParams.

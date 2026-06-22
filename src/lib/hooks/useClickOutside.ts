@@ -1,4 +1,4 @@
-import { useEffect, type RefObject } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 
 /**
  * Fires `callback` when a mousedown event occurs outside all provided refs.
@@ -9,6 +9,9 @@ export function useClickOutside(
   callback: () => void,
   enabled = true,
 ): void {
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
   useEffect(() => {
     if (!enabled) {
       return;
@@ -18,11 +21,13 @@ export function useClickOutside(
       const target = e.target as Node;
       const isInside = refs.some((ref) => ref.current?.contains(target));
       if (!isInside) {
-        callback();
+        callbackRef.current();
       }
     }
 
     document.addEventListener("mousedown", handleMouseDown);
     return () => document.removeEventListener("mousedown", handleMouseDown);
-  }, [refs, callback, enabled]);
+    // refs contains stable RefObjects from useRef — no need to include them or the array in deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabled]);
 }

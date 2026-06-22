@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { type DateRange } from "react-day-picker";
 import { useFormContext } from "react-hook-form";
 
@@ -57,8 +57,8 @@ export function useDateRangePicker(): UseDateRangePickerReturn {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  const minDate = isoToLocalDate(todayIso());
-  const maxDate = isoToLocalDate(addYears(todayIso(), 1));
+  const minDate = useMemo(() => isoToLocalDate(todayIso()), []);
+  const maxDate = useMemo(() => isoToLocalDate(addYears(todayIso(), 1)), []);
 
   const committedRange: DateRange = {
     from: isoToLocalDate(checkIn),

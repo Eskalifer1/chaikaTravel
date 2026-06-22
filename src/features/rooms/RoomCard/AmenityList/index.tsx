@@ -1,5 +1,3 @@
-"use client";
-
 import type { Amenity } from "@/types";
 import { AMENITY_ICONS } from "@/constants/amenityIcons";
 

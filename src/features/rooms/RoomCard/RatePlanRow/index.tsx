@@ -1,12 +1,7 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-
 import type { RatePlan } from "@/types";
 
 import { formatPrice } from "@/lib/utils/formatPrice";
 
-import { buildCheckoutUrl } from "../../utils/buildCheckoutUrl";
 import RatePlanCancellation from "./RatePlanCancellation";
 import RatePlanMeal from "./RatePlanMeal";
 import RatePlanPrice from "./RatePlanPrice";
@@ -20,12 +15,12 @@ interface RatePlanRowProps {
 
   /** Number of rooms booked — multiplied into the total price */
   roomCount: number;
+
+  /** Pre-built checkout URL for the reserve link */
+  checkoutUrl: string;
 }
 
-export default function RatePlanRow({ plan, nights, roomCount }: RatePlanRowProps) {
-  const searchParams = useSearchParams();
-  const checkoutUrl = buildCheckoutUrl(plan, searchParams);
-
+export default function RatePlanRow({ plan, nights, roomCount, checkoutUrl }: RatePlanRowProps) {
   return (
     <div className="flex flex-col gap-3 rounded-radius-md border border-border bg-surface-raised p-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col gap-1.5 text-sm">

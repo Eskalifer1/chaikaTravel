@@ -98,7 +98,7 @@ export default function TravelersPanelDialog({
   const style: React.CSSProperties = {
     position: "fixed",
     top: anchorRect.bottom + 8,
-    right: window.innerWidth - anchorRect.right,
+    right: `calc(100vw - ${anchorRect.right}px)`,
     zIndex: 9999,
   };
 
