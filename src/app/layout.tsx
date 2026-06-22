@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
@@ -26,7 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body className={`${jost.className} flex min-h-screen flex-col bg-background`}>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <NuqsAdapter>{children}</NuqsAdapter>
+        </main>
         <Footer />
       </body>
     </html>

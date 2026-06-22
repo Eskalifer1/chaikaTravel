@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Remove the native clear button on search inputs — we render our own */
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
 :root {
   /* Brand */
   --color-primary: #2563eb;
