@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import type { RatePlan } from "@/types";
 
 import { formatPrice } from "@/lib/utils/formatPrice";
@@ -31,7 +33,7 @@ export default function RatePlanRow({ plan, nights, roomCount, checkoutUrl }: Ra
       <div className="flex items-center justify-center gap-4 sm:flex-col sm:items-end sm:justify-normal flex-wrap">
         <RatePlanPrice plan={plan} nights={nights} roomCount={roomCount} />
 
-        <a
+        <Link
           href={checkoutUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -39,7 +41,7 @@ export default function RatePlanRow({ plan, nights, roomCount, checkoutUrl }: Ra
           aria-label={`Reserve this room for ${formatPrice(plan.price * nights * roomCount, plan.currency)}${plan.meal ? `, ${plan.meal.label}` : ""}, opens in new tab`}
         >
           Reserve
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -57,8 +57,9 @@ export function useDateRangePicker(): UseDateRangePickerReturn {
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  const minDate = useMemo(() => isoToLocalDate(todayIso()), []);
-  const maxDate = useMemo(() => isoToLocalDate(addYears(todayIso(), 1)), []);
+  const today = useMemo(() => todayIso(), []);
+  const minDate = useMemo(() => isoToLocalDate(today), [today]);
+  const maxDate = useMemo(() => isoToLocalDate(addYears(today, 1)), [today]);
 
   const committedRange: DateRange = {
     from: isoToLocalDate(checkIn),
