@@ -74,7 +74,9 @@ describe("AvailabilitySearch — date range picker", () => {
 
     await user.click(screen.getByRole("button", { name: /dates/i }));
 
-    expect(screen.getByRole("dialog", { name: "Select dates" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "Select check-in and check-out dates" }),
+    ).toBeInTheDocument();
   });
 
   it("closes the date picker when clicking outside", async () => {
@@ -82,12 +84,16 @@ describe("AvailabilitySearch — date range picker", () => {
     renderSearch();
 
     await user.click(screen.getByRole("button", { name: /dates/i }));
-    expect(screen.getByRole("dialog", { name: "Select dates" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "Select check-in and check-out dates" }),
+    ).toBeInTheDocument();
 
     await user.click(document.body);
 
     await waitFor(() => {
-      expect(screen.queryByRole("dialog", { name: "Select dates" })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("dialog", { name: "Select check-in and check-out dates" }),
+      ).not.toBeInTheDocument();
     });
   });
 });
@@ -103,7 +109,9 @@ describe("AvailabilitySearch — travelers panel", () => {
 
     await user.click(screen.getByRole("button", { name: /travelers/i }));
 
-    expect(screen.getByRole("dialog", { name: "Select travelers" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("dialog", { name: "Configure rooms and travelers" }),
+    ).toBeInTheDocument();
   });
 
   it("shows rooms and adults steppers inside the panel", async () => {

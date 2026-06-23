@@ -14,7 +14,7 @@ export default function AmenityList({ amenities }: AmenityListProps) {
       {amenities.map((amenity) => {
         const icon = AMENITY_ICONS[amenity.key];
         if (!icon) {
-          return <span key={amenity.key}>{amenity.label}</span>;
+          return <li key={amenity.key}>{amenity.label}</li>;
         }
         return (
           <li key={amenity.key} className="flex items-center gap-1.5 text-sm text-text-secondary">

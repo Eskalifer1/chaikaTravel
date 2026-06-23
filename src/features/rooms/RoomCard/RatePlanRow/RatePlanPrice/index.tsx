@@ -28,7 +28,7 @@ export default function RatePlanPrice({ plan, nights, roomCount }: RatePlanPrice
   const originalTotal = discounted ? plan.originalPrice * nights * roomCount : undefined;
 
   return (
-    <div className="flex items-baseline gap-2">
+    <div className="flex items-baseline gap-2 sm:flex-row flex-row-reverse">
       {discounted && (
         <span className="rounded-radius-sm bg-discount px-1.5 py-0.5 text-xs font-semibold text-discount-foreground">
           -{discountPct}%

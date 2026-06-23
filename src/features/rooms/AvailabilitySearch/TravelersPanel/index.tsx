@@ -3,13 +3,13 @@
 import { useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
+import { MAX_CHILDREN } from "@/constants/search";
+
 import { useClickOutside } from "@/lib/hooks/useClickOutside";
 import { pluralize } from "@/lib/utils";
 
 import type { AvailabilitySearchFormValues } from "../schema";
 import TravelersPanelDialog from "./TravelersPanelDialog";
-
-const MAX_CHILDREN = 10;
 
 /** Builds a compact summary label for the travelers trigger button */
 function buildTravelersLabel(adults: number, rooms: number, childAges: number[]): string {

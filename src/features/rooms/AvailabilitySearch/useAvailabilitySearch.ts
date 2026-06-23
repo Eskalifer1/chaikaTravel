@@ -19,7 +19,30 @@ const availabilityParsers = {
   [ROOMS_PARAM]: parseAsInteger,
   [ADULTS_PARAM]: parseAsInteger,
   [CHILD_AGES_PARAM]: parseAsArrayOf(parseAsInteger),
-};
+} as const;
+
+type NuqsRaw = ReturnType<typeof useQueryStates<typeof availabilityParsers>>[0];
+
+/** Converts nuqs parsed state into URLSearchParams for use with parseSearchParams */
+function nuqsRawToUrlSearchParams(raw: NuqsRaw): URLSearchParams {
+  const params = new URLSearchParams();
+  if (raw[CHECK_IN_PARAM] !== null) {
+    params.set(CHECK_IN_PARAM, raw[CHECK_IN_PARAM]);
+  }
+  if (raw[CHECK_OUT_PARAM] !== null) {
+    params.set(CHECK_OUT_PARAM, raw[CHECK_OUT_PARAM]);
+  }
+  if (raw[ROOMS_PARAM] !== null) {
+    params.set(ROOMS_PARAM, String(raw[ROOMS_PARAM]));
+  }
+  if (raw[ADULTS_PARAM] !== null) {
+    params.set(ADULTS_PARAM, String(raw[ADULTS_PARAM]));
+  }
+  if (raw[CHILD_AGES_PARAM] !== null && raw[CHILD_AGES_PARAM].length > 0) {
+    params.set(CHILD_AGES_PARAM, raw[CHILD_AGES_PARAM].join(","));
+  }
+  return params;
+}
 
 interface UseAvailabilitySearchReturn {
   /** Current validated search params (defaults applied for invalid/missing URL values) */
@@ -35,23 +58,7 @@ export function useAvailabilitySearch(): UseAvailabilitySearchReturn {
     scroll: false,
   });
 
-  const rawParams = new URLSearchParams();
-  if (raw[CHECK_IN_PARAM] !== null) {
-    rawParams.set(CHECK_IN_PARAM, raw[CHECK_IN_PARAM]);
-  }
-  if (raw[CHECK_OUT_PARAM] !== null) {
-    rawParams.set(CHECK_OUT_PARAM, raw[CHECK_OUT_PARAM]);
-  }
-  if (raw[ROOMS_PARAM] !== null) {
-    rawParams.set(ROOMS_PARAM, String(raw[ROOMS_PARAM]));
-  }
-  if (raw[ADULTS_PARAM] !== null) {
-    rawParams.set(ADULTS_PARAM, String(raw[ADULTS_PARAM]));
-  }
-  if (raw[CHILD_AGES_PARAM] !== null && raw[CHILD_AGES_PARAM].length > 0) {
-    rawParams.set(CHILD_AGES_PARAM, raw[CHILD_AGES_PARAM].join(","));
-  }
-  const searchParams = parseSearchParams(rawParams);
+  const searchParams = parseSearchParams(nuqsRawToUrlSearchParams(raw));
 
   function commitSearch(values: AvailabilitySearchFormValues) {
     void setRaw({

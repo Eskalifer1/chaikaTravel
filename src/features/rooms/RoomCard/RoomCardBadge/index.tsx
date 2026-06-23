@@ -9,7 +9,7 @@ interface RoomCardBadgeProps {
 export default function RoomCardBadge({ badge }: RoomCardBadgeProps) {
   return (
     <div
-      aria-hidden="true"
+      aria-label={`Badge: ${BADGE_LABELS[badge]}`}
       className="absolute left-3 top-3 z-10 rounded-radius-sm bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground"
     >
       {BADGE_LABELS[badge]}

@@ -41,6 +41,7 @@ export default function RoomList({ rooms }: RoomListProps) {
               priority={i < PRIORITY_CARDS_COUNT}
               nights={nights}
               roomCount={searchParams.rooms}
+              searchParams={searchParams}
             />
           </li>
         ))}

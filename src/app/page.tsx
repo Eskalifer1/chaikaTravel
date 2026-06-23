@@ -4,6 +4,7 @@ import { rooms } from "@/lib/mock-data";
 
 import AvailabilitySearch from "@/features/rooms/AvailabilitySearch";
 import RoomList from "@/features/rooms/RoomList";
+import RoomListSkeleton from "@/features/rooms/RoomList/RoomListSkeleton";
 import RoomSearch from "@/features/rooms/RoomSearch";
 
 export default function Home() {
@@ -24,7 +25,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-7xl px-4 py-8">
         <h1 className="sr-only">Available rooms</h1>
-        <Suspense>
+        <Suspense fallback={<RoomListSkeleton />}>
           <RoomList rooms={rooms} />
         </Suspense>
       </div>

@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import type { RoomSearchParams } from "@/types";
+import { MAX_ADULTS, MAX_ROOMS } from "@/constants/search";
 
 import { addDays, addMonths, addYears, todayIso } from "@/lib/utils";
 
@@ -27,13 +28,21 @@ export const availabilitySearchSchema = z
       }, "Check-in must be today or within 1 year"),
 
     /** Check-out date, ISO YYYY-MM-DD */
-    checkOut: z.string(),
+    checkOut: z.string().regex(ISO_DATE_REGEX, "Invalid date format"),
 
     /** Number of rooms, minimum 1 */
-    rooms: z.number().int().min(1, "At least 1 room required"),
+    rooms: z
+      .number()
+      .int()
+      .min(1, "At least 1 room required")
+      .max(MAX_ROOMS, `Cannot exceed ${MAX_ROOMS} rooms`),
 
     /** Number of adults, minimum 1 */
-    adults: z.number().int().min(1, "At least 1 adult required"),
+    adults: z
+      .number()
+      .int()
+      .min(1, "At least 1 adult required")
+      .max(MAX_ADULTS, `Cannot exceed ${MAX_ADULTS} adults`),
 
     /** Ages of children, each 0–17 */
     childAges: z.array(z.number().int().min(0).max(17, "Child age must be 0–17")),

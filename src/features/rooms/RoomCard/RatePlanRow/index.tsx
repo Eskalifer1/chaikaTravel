@@ -28,7 +28,7 @@ export default function RatePlanRow({ plan, nights, roomCount, checkoutUrl }: Ra
         <RatePlanMeal meal={plan.meal} />
       </div>
 
-      <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end sm:justify-normal">
+      <div className="flex items-center justify-center gap-4 sm:flex-col sm:items-end sm:justify-normal flex-wrap">
         <RatePlanPrice plan={plan} nights={nights} roomCount={roomCount} />
 
         <a

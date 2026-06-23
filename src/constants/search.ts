@@ -18,3 +18,12 @@ export const ADULTS_PARAM = "adults";
 
 /** URL param key for comma-separated child ages */
 export const CHILD_AGES_PARAM = "childAges";
+
+/** Maximum number of children that can be added to a search */
+export const MAX_CHILDREN = 10;
+
+/** Maximum number of rooms that can be booked in a single search */
+export const MAX_ROOMS = 30;
+
+/** Maximum number of adults that can be added to a search */
+export const MAX_ADULTS = 20;

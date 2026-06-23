@@ -2,6 +2,8 @@
 
 import { type Ref } from "react";
 
+import { MAX_ADULTS, MAX_ROOMS } from "@/constants/search";
+
 import XIcon from "@/components/Icons/XIcon";
 import Portal from "@/components/Portal";
 
@@ -15,11 +17,14 @@ interface StepperProps {
   /** Minimum allowed value */
   min: number;
 
+  /** Maximum allowed value */
+  max: number;
+
   /** Called with the new value when increment or decrement is clicked */
   onChange: (next: number) => void;
 }
 
-function Stepper({ label, value, min, onChange }: StepperProps) {
+function Stepper({ label, value, min, max, onChange }: StepperProps) {
   return (
     <div className="flex items-center justify-between gap-4">
       <span className="text-sm font-medium text-text-primary">{label}</span>
@@ -37,8 +42,9 @@ function Stepper({ label, value, min, onChange }: StepperProps) {
         <button
           type="button"
           onClick={() => onChange(value + 1)}
+          disabled={value >= max}
           aria-label={`Increase ${label.toLowerCase()}`}
-          className="flex h-8 w-8 items-center justify-center rounded-radius-md border border-border text-text-primary transition hover:border-border-strong"
+          className="flex h-8 w-8 items-center justify-center rounded-radius-md border border-border text-text-primary transition hover:border-border-strong disabled:cursor-not-allowed disabled:opacity-40"
         >
           +
         </button>
@@ -120,8 +126,14 @@ export default function TravelersPanelDialog({
           Configure rooms and travelers
         </span>
         <div className="flex flex-col gap-4">
-          <Stepper label="Rooms" value={rooms} min={1} onChange={onRoomsChange} />
-          <Stepper label="Adults" value={adults} min={1} onChange={onAdultsChange} />
+          <Stepper label="Rooms" value={rooms} min={1} max={MAX_ROOMS} onChange={onRoomsChange} />
+          <Stepper
+            label="Adults"
+            value={adults}
+            min={1}
+            max={MAX_ADULTS}
+            onChange={onAdultsChange}
+          />
 
           <div className="flex flex-col gap-2 border-t border-border pt-3">
             <div className="flex items-center justify-between">

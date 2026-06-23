@@ -1,8 +1,4 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-
-import type { RatePlan } from "@/types";
+import type { RatePlan, RoomSearchParams } from "@/types";
 
 import { formatPrice } from "@/lib/utils/formatPrice";
 
@@ -18,14 +14,20 @@ interface RoomCardRatePlansProps {
 
   /** Number of rooms booked — multiplied into the total price */
   roomCount: number;
+
+  /** Validated availability search params used to build the checkout URL */
+  searchParams: RoomSearchParams;
 }
 
 export default function RoomCardRatePlans({
   ratePlans,
   nights,
   roomCount,
+  searchParams,
 }: RoomCardRatePlansProps) {
-  const searchParams = useSearchParams();
+  if (ratePlans.length === 0) {
+    return null;
+  }
 
   const cheapest = ratePlans.reduce((min, p) => (p.price < min.price ? p : min));
   const lowestPrice = cheapest.price * nights * roomCount;

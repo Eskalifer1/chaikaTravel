@@ -1,6 +1,6 @@
 "use client";
 
-import type { Room } from "@/types";
+import type { Room, RoomSearchParams } from "@/types";
 
 import AmenityList from "./AmenityList";
 import ImageGallery from "./ImageGallery";
@@ -20,9 +20,18 @@ interface RoomCardProps {
 
   /** Number of rooms booked — multiplied into the total price */
   roomCount: number;
+
+  /** Validated availability search params used to build the checkout URL */
+  searchParams: RoomSearchParams;
 }
 
-export default function RoomCard({ room, priority = false, nights, roomCount }: RoomCardProps) {
+export default function RoomCard({
+  room,
+  priority = false,
+  nights,
+  roomCount,
+  searchParams,
+}: RoomCardProps) {
   return (
     <article
       aria-label={room.name}
@@ -48,7 +57,12 @@ export default function RoomCard({ room, priority = false, nights, roomCount }: 
 
         <AmenityList amenities={room.amenities} />
 
-        <RoomCardRatePlans ratePlans={room.ratePlans} nights={nights} roomCount={roomCount} />
+        <RoomCardRatePlans
+          ratePlans={room.ratePlans}
+          nights={nights}
+          roomCount={roomCount}
+          searchParams={searchParams}
+        />
       </div>
     </article>
   );
