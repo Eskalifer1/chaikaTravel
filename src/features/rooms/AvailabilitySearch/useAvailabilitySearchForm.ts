@@ -21,6 +21,7 @@ export function useAvailabilitySearchForm(): UseAvailabilitySearchFormReturn {
   const methods = useForm<AvailabilitySearchFormValues>({
     resolver: zodResolver(availabilitySearchSchema),
     values: searchParams,
+    mode: "onChange",
   });
 
   function onSubmit(values: AvailabilitySearchFormValues) {

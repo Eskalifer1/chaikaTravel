@@ -12,6 +12,7 @@ import { useAvailabilitySearchForm } from "./useAvailabilitySearchForm";
 
 function AvailabilitySearchInner() {
   const { methods, onSubmit } = useAvailabilitySearchForm();
+  const hasErrors = Object.keys(methods.formState.errors).length > 0;
 
   return (
     <FormProvider {...methods}>
@@ -26,8 +27,10 @@ function AvailabilitySearchInner() {
 
         <button
           type="submit"
+          disabled={hasErrors}
           aria-label="Search rooms"
-          className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center self-center rounded-full bg-primary text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          aria-disabled={hasErrors}
+          className="flex h-10 w-10 shrink-0 items-center justify-center self-center rounded-full bg-primary text-primary-foreground transition hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
         >
           <SearchIcon width={18} height={18} />
         </button>

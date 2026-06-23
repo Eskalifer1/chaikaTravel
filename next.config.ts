@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 // next/font inlines @font-face via <style> tags — 'unsafe-inline' is required for style-src.
 // script-src 'unsafe-inline' is required by Next.js App Router for hydration inline scripts.
+// 'unsafe-eval' is required by React in development mode for callstack reconstruction — never used in production.
 // For a stricter setup without 'unsafe-inline', use nonce-based CSP (see Next.js CSP docs).
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline';
+  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: https://images.unsplash.com;
   font-src 'self';
