@@ -72,6 +72,9 @@ interface TravelersPanelDialogProps {
   /** Called to add a new child */
   onAddChild: () => void;
 
+  /** Whether adding another child is allowed (respects MAX_CHILDREN limit) */
+  canAddChild: boolean;
+
   /** Called to remove a child by index */
   onRemoveChild: (index: number) => void;
 
@@ -91,6 +94,7 @@ export default function TravelersPanelDialog({
   onAdultsChange,
   onChildAgeChange,
   onAddChild,
+  canAddChild,
   onRemoveChild,
   childAgesError,
   anchorRect,
@@ -125,7 +129,8 @@ export default function TravelersPanelDialog({
               <button
                 type="button"
                 onClick={onAddChild}
-                className="text-xs font-semibold text-primary hover:text-primary-hover"
+                disabled={!canAddChild}
+                className="text-xs font-semibold text-primary hover:text-primary-hover disabled:cursor-not-allowed disabled:opacity-40"
               >
                 + Add child
               </button>
@@ -144,7 +149,12 @@ export default function TravelersPanelDialog({
                     <select
                       id={`child-age-${i}`}
                       value={age}
-                      onChange={(e) => onChildAgeChange(i, parseInt(e.target.value, 10))}
+                      onChange={(e) => {
+                        const parsed = parseInt(e.target.value, 10);
+                        if (!isNaN(parsed)) {
+                          onChildAgeChange(i, parsed);
+                        }
+                      }}
                       className="w-16 rounded-radius-md border border-border bg-surface px-2 py-1 text-sm text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                       {Array.from({ length: 18 }, (_, n) => (

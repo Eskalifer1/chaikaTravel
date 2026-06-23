@@ -11,16 +11,18 @@ interface AmenityListProps {
 export default function AmenityList({ amenities }: AmenityListProps) {
   return (
     <ul className="flex flex-wrap gap-x-4 gap-y-2" aria-label="Room amenities">
-      {amenities.map((amenity) => (
-        <li key={amenity.key} className="flex items-center gap-1.5 text-sm text-text-secondary">
-          <Icon
-            svg={AMENITY_ICONS[amenity.key]}
-            className="h-4 w-4 shrink-0"
-            label={amenity.label}
-          />
-          <span>{amenity.label}</span>
-        </li>
-      ))}
+      {amenities.map((amenity) => {
+        const icon = AMENITY_ICONS[amenity.key];
+        if (!icon) {
+          return <span key={amenity.key}>{amenity.label}</span>;
+        }
+        return (
+          <li key={amenity.key} className="flex items-center gap-1.5 text-sm text-text-secondary">
+            <Icon svg={icon} className="h-4 w-4 shrink-0" label={amenity.label} />
+            <span>{amenity.label}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }

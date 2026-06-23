@@ -27,10 +27,15 @@ export default function RatePlanCancellation({ cancellation }: RatePlanCancellat
     );
   }
 
-  return (
-    <p className="flex items-center gap-1.5 text-destructive">
-      <Icon svg={XIcon} className="h-3.5 w-3.5 shrink-0" />
-      <span>Non-refundable</span>
-    </p>
-  );
+  if (cancellation.type === CANCELLATION_TYPES.nonRefundable) {
+    return (
+      <p className="flex items-center gap-1.5 text-destructive">
+        <Icon svg={XIcon} className="h-3.5 w-3.5 shrink-0" />
+        <span>Non-refundable</span>
+      </p>
+    );
+  }
+
+  // Compile-time exhaustiveness check — adding a new CancellationPolicyType will error here
+  return ((_: never) => null)(cancellation);
 }

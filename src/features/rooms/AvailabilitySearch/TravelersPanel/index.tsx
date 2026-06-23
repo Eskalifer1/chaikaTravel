@@ -9,6 +9,8 @@ import { pluralize } from "@/lib/utils";
 import type { AvailabilitySearchFormValues } from "../schema";
 import TravelersPanelDialog from "./TravelersPanelDialog";
 
+const MAX_CHILDREN = 10;
+
 /** Builds a compact summary label for the travelers trigger button */
 function buildTravelersLabel(adults: number, rooms: number, childAges: number[]): string {
   const totalGuests = adults + childAges.length;
@@ -40,6 +42,9 @@ export default function TravelersPanel() {
   }
 
   function handleAddChild() {
+    if (childAges.length >= MAX_CHILDREN) {
+      return;
+    }
     setValue("childAges", [...childAges, 5], { shouldValidate: true });
   }
 
@@ -88,6 +93,7 @@ export default function TravelersPanel() {
           onAdultsChange={(v) => setValue("adults", v, { shouldValidate: true })}
           onChildAgeChange={handleChildAgeChange}
           onAddChild={handleAddChild}
+          canAddChild={childAges.length < MAX_CHILDREN}
           onRemoveChild={handleRemoveChild}
           childAgesError={childAgesError}
           anchorRect={anchorRect}

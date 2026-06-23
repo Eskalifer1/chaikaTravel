@@ -12,14 +12,19 @@ export function getDefaultCheckOut(): string {
   return addDays(todayIso(), 1);
 }
 
+const ISO_DATE_REGEX = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+
 export const availabilitySearchSchema = z
   .object({
     /** Check-in date, ISO YYYY-MM-DD */
-    checkIn: z.string().refine((v) => {
-      const today = todayIso();
-      const maxDate = addYears(today, 1);
-      return v >= today && v <= maxDate;
-    }, "Check-in must be today or within 1 year"),
+    checkIn: z
+      .string()
+      .regex(ISO_DATE_REGEX, "Invalid date format")
+      .refine((v) => {
+        const today = todayIso();
+        const maxDate = addYears(today, 1);
+        return v >= today && v <= maxDate;
+      }, "Check-in must be today or within 1 year"),
 
     /** Check-out date, ISO YYYY-MM-DD */
     checkOut: z.string(),
@@ -56,7 +61,7 @@ export function getDefaultValues(): AvailabilitySearchFormValues {
 
 const checkInFieldSchema = availabilitySearchSchema.shape.checkIn;
 
-const checkOutFieldSchema = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+const checkOutFieldSchema = z.string().regex(ISO_DATE_REGEX);
 
 const roomsFieldSchema = availabilitySearchSchema.shape.rooms;
 

@@ -1,8 +1,8 @@
 import type { Room, RoomSearchParams } from "@/types";
 
-/** Returns the lowest price across all rate plans for a room */
+/** Returns the lowest price across all rate plans for a room, or 0 if none exist */
 function getMinPrice(room: Room): number {
-  return Math.min(...room.ratePlans.map((rp) => rp.price));
+  return room.ratePlans.reduce((min, rp) => Math.min(min, rp.price), Infinity);
 }
 
 /**
