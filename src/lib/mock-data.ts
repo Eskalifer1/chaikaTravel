@@ -6,7 +6,7 @@ export const rooms: Room[] = [
     id: "room-standard-city",
     name: "Standard City View Room",
     description:
-      "A well-appointed room with a panoramic view of the city skyline. Ideal for solo travellers and couples looking for comfort at an accessible price.",
+      "A well-appointed room with a panoramic view of the city skyline. Ideal for solo travelers and couples looking for comfort at an accessible price.",
     badge: "frequently-booked",
     availableCount: 3,
     maxOccupancy: 2,
@@ -230,7 +230,7 @@ export const rooms: Room[] = [
     id: "room-economy-single",
     name: "Economy Single Room",
     description:
-      "Compact and functional room designed for solo business travellers who value efficiency. Everything you need, nothing you don't.",
+      "Compact and functional room designed for solo business travelers who value efficiency. Everything you need, nothing you don't.",
     maxOccupancy: 1,
     areaSqm: 14,
     amenities: [
@@ -404,7 +404,7 @@ export const rooms: Room[] = [
     id: "room-ocean-view",
     name: "Superior Ocean View Room",
     description:
-      "Wake up to unobstructed ocean views from your private balcony. Light-filled interiors with coastal décor and premium bedding.",
+      "Wake up to unobstructed ocean views from your private balcony. Light-filled interiors with coastal decor and premium bedding.",
     badge: "upgrade",
     availableCount: 4,
     maxOccupancy: 2,
@@ -510,7 +510,7 @@ export const rooms: Room[] = [
     id: "room-studio-pod",
     name: "Studio Pod",
     description:
-      "A cleverly designed micro-studio with a built-in Murphy bed, fold-out desk, and everything optimised for the minimalist traveller.",
+      "A cleverly designed micro-studio with a built-in Murphy bed, fold-out desk, and everything optimized for the minimalist traveler.",
     availableCount: 8,
     maxOccupancy: 1,
     areaSqm: 10,
@@ -548,7 +548,7 @@ export const rooms: Room[] = [
     id: "room-superior-twin",
     name: "Superior Twin Room",
     description:
-      "Classically furnished twin room with two queen beds, ideal for colleagues sharing or friends travelling together.",
+      "Classically furnished twin room with two queen beds, ideal for colleagues sharing or friends traveling together.",
     badge: "lowest-price",
     availableCount: 6,
     maxOccupancy: 3,

@@ -11,11 +11,13 @@ words:
   - checkIn
   - checkOut
   - childAges
+  - Cscript
   - cspell
   - hookform
   - Jost
   - maxOccupancy
   - nextjs
+  - nonref
   - nuqs
   - ratePlan
   - ratePlanId

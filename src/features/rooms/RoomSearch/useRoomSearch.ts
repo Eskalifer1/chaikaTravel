@@ -9,7 +9,7 @@ import { ROOM_QUERY_PARAM, SEARCH_DEBOUNCE_MS } from "@/constants/search";
 import { useDebounce } from "@/lib/hooks/useDebounce";
 
 interface UseRoomSearchReturn {
-  /** Current value of the search input (unthrottled) */
+  /** Current value of the search input */
   inputValue: string;
 
   /** Updates the input value; URL write is debounced while typing */
