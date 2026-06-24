@@ -74,7 +74,7 @@ export default function TravelersPanelDialog({
       titleId={TITLE_ID}
       onClose={onClose}
       align="right"
-      className="w-72 p-4"
+      className="sm:w-72 p-4"
     >
       <span id={TITLE_ID} className="sr-only">
         Configure rooms and travelers
