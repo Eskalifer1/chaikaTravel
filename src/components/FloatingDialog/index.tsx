@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, type Ref } from "react";
+import { useEffect, useState, type Ref } from "react";
 
 import Portal from "@/components/Portal";
 
-interface FloatingDialogProps {
+interface FloatingDialogProps extends React.ComponentPropsWithoutRef<"div"> {
   /** Ref forwarded to the dialog root element, used for outside-click detection by the caller */
   ref: Ref<HTMLDivElement>;
 
@@ -17,23 +17,17 @@ interface FloatingDialogProps {
   /** Called when the user presses Escape */
   onClose: () => void;
 
-  /** Dialog content */
-  children: React.ReactNode;
-
   /**
    * Desktop horizontal alignment relative to the anchor:
    * "left" aligns the dialog's left edge to the anchor's left edge;
    * "right" aligns the dialog's right edge to the anchor's right edge
    */
   align?: "left" | "right";
-
-  /** Extra CSS classes applied to the desktop dropdown panel */
-  className?: string;
 }
 
 const VIEWPORT_GAP = 8;
 
-function resolveDesktopStyle(anchorRect: DOMRect, align: "left" | "right"): React.CSSProperties {
+function resolveDesktopVars(anchorRect: DOMRect, align: "left" | "right"): React.CSSProperties {
   const spaceBelow = window.innerHeight - anchorRect.bottom - VIEWPORT_GAP;
 
   const top =
@@ -46,12 +40,12 @@ function resolveDesktopStyle(anchorRect: DOMRect, align: "left" | "right"): Reac
       VIEWPORT_GAP,
       Math.min(anchorRect.left, window.innerWidth - VIEWPORT_GAP),
     );
-    return { position: "fixed", top, left, zIndex: 9999 };
+    return { "--dialog-top": `${top}px`, "--dialog-left": `${left}px` } as React.CSSProperties;
   }
 
   const rightFromEdge = window.innerWidth - anchorRect.right;
   const right = Math.max(VIEWPORT_GAP, rightFromEdge);
-  return { position: "fixed", top, right, zIndex: 9999 };
+  return { "--dialog-top": `${top}px`, "--dialog-right": `${right}px` } as React.CSSProperties;
 }
 
 export default function FloatingDialog({
@@ -62,7 +56,14 @@ export default function FloatingDialog({
   children,
   align = "left",
   className = "",
+  ...rest
 }: FloatingDialogProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+  }, []);
+
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
@@ -74,8 +75,6 @@ export default function FloatingDialog({
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
-
   if (isMobile) {
     return (
       <Portal>
@@ -85,13 +84,20 @@ export default function FloatingDialog({
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}
-          className="fixed inset-x-0 bottom-0 z-9999 max-h-[85dvh] overflow-y-auto rounded-t-radius-xl border-t border-border bg-surface p-4 shadow-lg"
+          className={`fixed inset-x-0 bottom-0 z-9999 max-h-[85dvh] overflow-y-auto rounded-t-radius-xl border-t border-border bg-surface p-4 shadow-lg ${className}`}
+          {...rest}
         >
           {children}
         </div>
       </Portal>
     );
   }
+
+  const positionVars = resolveDesktopVars(anchorRect, align);
+  const positionClass =
+    align === "left"
+      ? "top-[var(--dialog-top)] left-[var(--dialog-left)]"
+      : "top-[var(--dialog-top)] right-[var(--dialog-right)]";
 
   return (
     <Portal>
@@ -100,8 +106,9 @@ export default function FloatingDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        style={resolveDesktopStyle(anchorRect, align)}
-        className={`rounded-radius-lg border border-border bg-surface shadow-lg ${className}`}
+        style={positionVars}
+        className={`fixed z-9999 ${positionClass} rounded-radius-lg border border-border bg-surface shadow-lg ${className}`}
+        {...rest}
       >
         {children}
       </div>

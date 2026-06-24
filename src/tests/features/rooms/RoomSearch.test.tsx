@@ -69,7 +69,7 @@ describe("RoomSearch — typing", () => {
   });
 
   it("updates the URL after debounce", async () => {
-    const onUrlUpdate = vi.fn<[UrlUpdateEvent], void>();
+    const onUrlUpdate = vi.fn<(event: UrlUpdateEvent) => void>();
     const user = userEvent.setup();
 
     render(<RoomSearch />, {
@@ -87,7 +87,7 @@ describe("RoomSearch — typing", () => {
   });
 
   it("removes the URL param when input is cleared by typing", async () => {
-    const onUrlUpdate = vi.fn<[UrlUpdateEvent], void>();
+    const onUrlUpdate = vi.fn<(event: UrlUpdateEvent) => void>();
     const user = userEvent.setup();
 
     render(<RoomSearch />, {
@@ -133,7 +133,7 @@ describe("RoomSearch — clear button", () => {
   });
 
   it("removes the URL param immediately without waiting for debounce", async () => {
-    const onUrlUpdate = vi.fn<[UrlUpdateEvent], void>();
+    const onUrlUpdate = vi.fn<(event: UrlUpdateEvent) => void>();
     const user = userEvent.setup();
 
     render(<RoomSearch />, {
