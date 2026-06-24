@@ -43,6 +43,9 @@ interface UseDateRangePickerReturn {
 
   /** Called when the user clicks a day in the calendar */
   handleDayClick: (day: Date) => void;
+
+  /** Called to close the dialog and reset pending selection state */
+  handleClose: () => void;
 }
 
 export function useDateRangePicker(): UseDateRangePickerReturn {
@@ -73,9 +76,7 @@ export function useDateRangePicker(): UseDateRangePickerReturn {
 
   useClickOutside([triggerRef, dialogRef], () => {
     if (open) {
-      setPendingFrom(null);
-      setPhase("idle");
-      setOpen(false);
+      handleClose();
     }
   });
 
@@ -99,13 +100,17 @@ export function useDateRangePicker(): UseDateRangePickerReturn {
 
   function handleOpenToggle() {
     if (open) {
-      setPendingFrom(null);
-      setPhase("idle");
-      setOpen(false);
+      handleClose();
     } else {
       setAnchorRect(triggerRef.current?.getBoundingClientRect() ?? null);
       setOpen(true);
     }
+  }
+
+  function handleClose() {
+    setPendingFrom(null);
+    setPhase("idle");
+    setOpen(false);
   }
 
   return {
@@ -118,5 +123,6 @@ export function useDateRangePicker(): UseDateRangePickerReturn {
     anchorRect,
     handleOpenToggle,
     handleDayClick,
+    handleClose,
   };
 }

@@ -3,7 +3,9 @@
 import { type Ref } from "react";
 import { DayPicker, type DateRange } from "react-day-picker";
 
-import Portal from "@/components/Portal";
+import FloatingDialog from "@/components/FloatingDialog";
+
+const TITLE_ID = "date-range-picker-title";
 
 interface DateRangePickerDialogProps {
   /** Ref forwarded to the dialog root div, used for outside-click detection */
@@ -21,8 +23,11 @@ interface DateRangePickerDialogProps {
   /** Called when the user clicks any enabled day */
   onDayClick: (day: Date) => void;
 
-  /** Bounding rect of the trigger button, used to position the dialog */
+  /** Bounding rect of the trigger button, used to position the dialog on desktop */
   anchorRect: DOMRect;
+
+  /** Called when the dialog should close (e.g. Escape key) */
+  onClose: () => void;
 }
 
 export default function DateRangePickerDialog({
@@ -32,37 +37,29 @@ export default function DateRangePickerDialog({
   maxDate,
   onDayClick,
   anchorRect,
+  onClose,
 }: DateRangePickerDialogProps) {
-  const style: React.CSSProperties = {
-    position: "fixed",
-    top: anchorRect.bottom + 8,
-    left: anchorRect.left,
-    zIndex: 9999,
-  };
-
   return (
-    <Portal>
-      <div
-        ref={ref}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="date-range-picker-title"
-        style={style}
-        className="rounded-radius-lg border border-border bg-surface p-3 shadow-lg"
-      >
-        <span id="date-range-picker-title" className="sr-only">
-          Select check-in and check-out dates
-        </span>
-        <DayPicker
-          mode="range"
-          selected={displayRange}
-          onSelect={() => {}}
-          onDayClick={onDayClick}
-          disabled={{ before: minDate, after: maxDate }}
-          numberOfMonths={2}
-          showOutsideDays={false}
-        />
-      </div>
-    </Portal>
+    <FloatingDialog
+      ref={ref}
+      anchorRect={anchorRect}
+      titleId={TITLE_ID}
+      onClose={onClose}
+      align="left"
+      className="p-3"
+    >
+      <span id={TITLE_ID} className="sr-only">
+        Select check-in and check-out dates
+      </span>
+      <DayPicker
+        mode="range"
+        selected={displayRange}
+        onSelect={() => {}}
+        onDayClick={onDayClick}
+        disabled={{ before: minDate, after: maxDate }}
+        numberOfMonths={2}
+        showOutsideDays={false}
+      />
+    </FloatingDialog>
   );
 }

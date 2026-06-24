@@ -6,6 +6,7 @@ import { FormProvider } from "react-hook-form";
 import SearchIcon from "@/components/Icons/SearchIcon";
 
 import AvailabilitySearchFallback from "./AvailabilitySearchFallback";
+import ClearFiltersButton from "./ClearFiltersButton";
 import DateRangePicker from "./DateRangePicker";
 import TravelersPanel from "./TravelersPanel";
 import { useAvailabilitySearchForm } from "./useAvailabilitySearchForm";
@@ -34,6 +35,8 @@ function AvailabilitySearchInner() {
         >
           <SearchIcon width={18} height={18} />
         </button>
+
+        <ClearFiltersButton onClear={onSubmit} />
       </form>
     </FormProvider>
   );

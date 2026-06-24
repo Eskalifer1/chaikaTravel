@@ -97,6 +97,7 @@ export default function TravelersPanel() {
           onRemoveChild={handleRemoveChild}
           childAgesError={childAgesError}
           anchorRect={anchorRect}
+          onClose={() => setOpen(false)}
         />
       )}
     </div>

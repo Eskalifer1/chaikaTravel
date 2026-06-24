@@ -24,6 +24,7 @@ export default function DateRangePicker() {
     anchorRect,
     handleOpenToggle,
     handleDayClick,
+    handleClose,
   } = useDateRangePicker();
 
   const checkInError = formState.errors.checkIn?.message;
@@ -49,6 +50,7 @@ export default function DateRangePicker() {
           maxDate={maxDate}
           onDayClick={handleDayClick}
           anchorRect={anchorRect}
+          onClose={handleClose}
         />
       )}
     </div>
